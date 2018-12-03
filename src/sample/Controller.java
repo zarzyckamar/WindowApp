@@ -10,10 +10,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaPlayerBuilder;
 import javafx.stage.Stage;
 
+import javax.print.attribute.standard.Media;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -33,73 +38,62 @@ public class Controller implements Initializable {
 
     public void cityfield(javafx.event.ActionEvent actionEvent) { }
 
-    public void but1(javafx.event.ActionEvent actionEvent) throws Exception {
-        Stage stageone = new Stage();
-
-        Parent root = FXMLLoader.load(getClass().getResource("one.fxml"));
-        stageone.setTitle("Guess what city is this!");
-        stageone.setScene(new Scene(root, 385, 286));
-
-        stageone.show();
-
-    }
     public void checkit1(javafx.event.ActionEvent actionEvent) {
 
-        if (textcityfield.getText().trim().equals("Częstochowa" )){
-            String a = "Gratulacja!!";
+        if (textcityfield.getText().trim().equals("Częstochowa" ) || textcityfield.getText().trim().equals("częstochowa")){
+            String a = "Congratulations its a correct city!!";
+            audioclipcorrect();
             JOptionPane.showMessageDialog(null, a);}
         else
         {
-            JOptionPane.showMessageDialog(null, "Nieprawidłowe miasto");
+            audioclipfail();
+            JOptionPane.showMessageDialog(null, "Uncorrect city name");
         }
+        Platform.exit();
 
-    }
-
-    public void but2(javafx.event.ActionEvent actionEvent) throws IOException {
-
-        Stage stagetwo = new Stage();
-
-        Parent root = FXMLLoader.load(getClass().getResource("two.fxml"));
-        stagetwo.setTitle("Guess what city is this!");
-        stagetwo.setScene(new Scene(root, 385, 286));
-
-        stagetwo.show();
-    }
-
-    public void but3(javafx.event.ActionEvent actionEvent) throws IOException {
-        Stage stagetwo = new Stage();
-
-        Parent root = FXMLLoader.load(getClass().getResource("three.fxml"));
-        stagetwo.setTitle("Guess what city is this!");
-        stagetwo.setScene(new Scene(root, 385, 286));
-
-        stagetwo.show();
-    }
-
-    public void checkit3(javafx.event.ActionEvent actionEvent) {
-
-        if (textcityfield.getText().trim().equals("Gdańsk" )){
-            String a = "Gratulacja!!";
-            JOptionPane.showMessageDialog(null, a);}
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Nieprawidłowe miasto");
-        }
     }
 
     public void checkit2(javafx.event.ActionEvent actionEvent) {
 
-        if (textcityfield.getText().trim().equals("Poznań" )){
-            String a = "Gratulacja!!";
-            JOptionPane.showMessageDialog(null, a);}
+        if (textcityfield.getText().trim().equals("Poznań" ) || textcityfield.getText().trim().equals("poznań")){
+            String a = "Congratulations its a corret city!!";
+            audioclipcorrect();
+            JOptionPane.showMessageDialog(null, a);
+
+        }
         else
         {
-            JOptionPane.showMessageDialog(null, "Nieprawidłowe miasto");
+            audioclipfail();
+            JOptionPane.showMessageDialog(null, "Uncorrect city name");
         }
-    }
-
-    public void exitbtn(javafx.event.ActionEvent actionEvent) {
         Platform.exit();
     }
+
+    public void checkit3(javafx.event.ActionEvent actionEvent) {
+
+        if (textcityfield.getText().trim().equals("Gdańsk" ) || textcityfield.getText().trim().equals("gdańsk") ){
+            String a = "Congratulations its a corret city!!";
+            audioclipcorrect();
+            JOptionPane.showMessageDialog(null, a);
+        }
+        else
+        {
+            audioclipfail();
+            JOptionPane.showMessageDialog(null, "Uncorrect city name");
+        }
+        Platform.exit();
+    }
+
+    public void audioclipcorrect()
+    {
+        AudioClip clip = new AudioClip(this.getClass().getResource("sound/bravo.mp3").toString());
+        clip.play();
+    }
+    public void audioclipfail()
+    {
+        AudioClip clip = new AudioClip(this.getClass().getResource("sound/fail.mp3").toString());
+        clip.play();
+    }
+
 }
 
