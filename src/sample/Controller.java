@@ -84,6 +84,36 @@ public class Controller implements Initializable {
         Platform.exit();
     }
 
+    public void checkit4(javafx.event.ActionEvent actionEvent) {
+
+        if (textcityfield.getText().trim().equals("Bolesławiec" ) || textcityfield.getText().trim().equals("bolesławiec") ){
+            String a = "Congratulations its a corret city!!";
+            audioclipcorrect();
+            JOptionPane.showMessageDialog(null, a);
+        }
+        else
+        {
+            audioclipfail();
+            JOptionPane.showMessageDialog(null, "Uncorrect city name");
+        }
+        Platform.exit();
+    }
+
+    public void checkit5(javafx.event.ActionEvent actionEvent) {
+
+        if (textcityfield.getText().trim().equals("Wrocław" ) || textcityfield.getText().trim().equals("wrocław") ){
+            String a = "Congratulations its a corret city!!";
+            audioclipcorrect();
+            JOptionPane.showMessageDialog(null, a);
+        }
+        else
+        {
+            audioclipfail();
+            JOptionPane.showMessageDialog(null, "Uncorrect city name");
+        }
+        Platform.exit();
+    }
+
     public void audioclipcorrect()
     {
         AudioClip clip = new AudioClip(this.getClass().getResource("sound/bravo.mp3").toString());
